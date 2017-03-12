@@ -16,13 +16,16 @@ function easy_sky_add_menu(){
 }
 function easy_sky_setting(){
     if(isset($_POST['submit'])){
-        $email = $_POST['email'];
-        $mouse = $_POST['mouse'];
-        update_option('Nagomi_EasySky_email', $email);
-        update_option('Nagomi_EasySky_mouse', $mouse);
+		$save = array();
+        $save['email'] = $_POST['email'];
+        $save['mouse'] = $_POST['mouse'];
+        $save['keyboard'] = $_POST['keyboard'];
+        update_option('Nagomi_EasySky', $save);
     }
-	$email = get_option('Nagomi_EasySky_email');
-	$mouse = get_option('Nagomi_EasySky_mouse');
+	$setting = get_option('Nagomi_EasySky', array('email' => '', 'mouse' => '', 'keyboard' => ''));
+	$email = $setting['email'];
+	$mouse = $setting['mouse'];
+	$keyboard = $setting['keyboard'];
 
     include __DIR__ . '/views/v_easy_sky_setting.php';
 }
