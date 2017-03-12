@@ -1,6 +1,7 @@
 ﻿
 
 <form method="post">
+	<?php wp_nonce_field('easy_sky_setting', '_easy_sky_setting_nonce')?>
 	<p>メールアドレス</p>
 	<input type="text" name="email" value="<?php echo $email?>" />
 	<p>ご利用マウス</p>
