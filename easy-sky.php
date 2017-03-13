@@ -15,7 +15,10 @@ function easy_sky_add_menu(){
 	add_menu_page('EasySky設定画面', 'EasySky', 'administrator', 'easy_sky_setting', 'easy_sky_setting');
 }
 function easy_sky_setting(){
-    if(isset($_POST['submit'])){
+	$nonce = isset($_POST['_easy_sky_setting_nonce']) ? $_POST['_easy_sky_setting_nonce'] : '';
+    if(isset($_POST['submit'])
+		&& strlen($nonce) > 0
+		&& wp_verify_nonce($nonce, 'easy_sky_setting')){
 		$save = array();
         $save['email'] = $_POST['email'];
         $save['mouse'] = $_POST['mouse'];
